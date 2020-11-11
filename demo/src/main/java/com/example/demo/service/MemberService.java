@@ -7,8 +7,15 @@ import com.example.demo.domain.Member;
 import com.example.demo.repository.MemberRepository;
 import com.example.demo.repository.MemoryMemberRepository;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class MemberService {
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     // 회원가입
     public Long join(Member member) {
@@ -31,4 +38,5 @@ public class MemberService {
     public Optional<Member> findOne(Long memberId) {
         return memberRepository.findById(memberId);
     }
+
 }
